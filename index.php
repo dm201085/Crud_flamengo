@@ -5,7 +5,6 @@ include('conexao.php');
 $erro = "";
 
 if (isset($_POST['email']) || isset($_POST['senha'])) {
-
     if (strlen($_POST['email']) == 0) {
         $erro = "Preencha seu e-mail.";
     } elseif (strlen($_POST['senha']) == 0) {
