@@ -13,12 +13,21 @@ if (session_status() === PHP_SESSION_NONE) {
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
+<style>
+    body {
+        background: url(imagens/campo.png);
+        background-position: center;
+        background-size: cover;
+    }
+</style>
+
 <body class="bg-zinc-900 text-gray-100 font-sans min-h-screen flex flex-col md:flex-row">
     
     <aside class="w-full md:w-64 bg-black border-r border-red-700 flex flex-col justify-between p-4 shadow-xl">
         <div>
             <div class="flex items-center gap-3 mb-8 border-b border-zinc-800 pb-4 justify-center md:justify-start">
-                <img src="img/campo.png" alt="Escudo Flamengo" class="w-12 h-12 object-contain">
+                <img src="imagens/escudo.png" alt="Escudo Flamengo" class="w-12 h-12 object-contain">
                 <div>
                     <h2 class="font-black text-xl tracking-wider text-red-600">FLAMENGO</h2>
                     <span class="text-xs text-gray-400 font-bold uppercase tracking-widest">Painel Oficial</span>
@@ -65,19 +74,19 @@ if (session_status() === PHP_SESSION_NONE) {
         </header>
 
        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-            <a href="adversarios.php" class="block bg-zinc-950 border-l-4 border-red-600 p-6 rounded-r-xl shadow-lg hover:bg-zinc-900 transition cursor-pointer">
+            <a href="paginas/adversarios/index.php" class="block bg-zinc-950 border-l-4 border-red-600 p-6 rounded-r-xl shadow-lg hover:bg-zinc-900 transition cursor-pointer">
                 <h3 class="text-gray-400 font-medium text-sm uppercase">adversários</h3>
-                <p class="text-sm font-bold mt-2 text-white">Acessar CRUD &rarr;</p>
+                <p class="text-sm font-bold mt-2 text-white">Acessar MÓDULO &rarr;</p>
             </a>
             
             <a href="ingressos.php" class="block bg-zinc-950 border-l-4 border-black p-6 rounded-r-xl shadow-lg border-y border-r border-zinc-800 hover:bg-zinc-900 transition cursor-pointer">
                 <h3 class="text-gray-400 font-medium text-sm uppercase">Ingressos</h3>
-                <p class="text-sm font-bold mt-2 text-red-500">Acessar CRUD &rarr;</p>
+                <p class="text-sm font-bold mt-2 text-red-500">Acessar MÓDULO &rarr;</p>
             </a>
             
            <a href="pagamentos.php" class="block bg-zinc-950 border-l-4 border-red-600 p-6 rounded-r-xl shadow-lg hover:bg-zinc-900 transition cursor-pointer">
                 <h3 class="text-gray-400 font-medium text-sm uppercase">Pagamentos</h3>
-                <p class="text-sm font-bold mt-2 text-white">Acessar CRUD &rarr;</p>
+                <p class="text-sm font-bold mt-2 text-white">Acessar  MÓDULO &rarr;</p>
             </a>
         </section>
 

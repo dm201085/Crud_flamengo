@@ -1,6 +1,6 @@
 <?php
-include('protect.php');
-include('conexao.php');
+include('../../protect.php');
+include('../../conexao.php');
 
 $sql_code = "SELECT * FROM adversarios ORDER BY id DESC";
 $sql_query = $mysqli->query($sql_code) or die("Falha na execução: " . $mysqli->error);

@@ -1,6 +1,6 @@
 <?php
-include('protect.php');
-include('conexao.php');
+include('../../protect.php');
+include('../../conexao.php');
 
 if (isset($_GET['id'])) {
     
