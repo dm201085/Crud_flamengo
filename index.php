@@ -65,9 +65,8 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     <div class="card">
 
         <div class="logo-area">
-            <div class="escudo">⚫🔴</div>
+            <div class="escudo"></div>
 
-            <h1>
                 Clube de Regatas<br>do Flamengo
                 <span>Área Restrita</span>
             </h1>
