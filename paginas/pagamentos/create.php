@@ -1,6 +1,6 @@
 <?php
-include('protect.php');
-include('conexao.php');
+include('../../protect.php');
+include('../../conexao.php');
 
 $mensagem = "";
 
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sql_code = "INSERT INTO pagamentos (cliente, valor, metodo, status, data_pagamento) VALUES ('$cliente', '$valor', '$metodo', '$status', '$data_pagamento')";
         
         if ($mysqli->query($sql_code)) {
-            header("Location: pagamentos.php");
+            header("Location: index.php");
             exit();
         } else {
             $mensagem = "Erro ao cadastrar: " . $mysqli->error;
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body class="bg-zinc-900 text-gray-100 font-sans min-h-screen p-6 md:p-10">
 
     <div class="max-w-md mx-auto">
-        <a href="pagamentos.php" class="text-red-500 hover:text-red-400 mb-6 inline-block font-semibold transition">
+        <a href="index.php" class="text-red-500 hover:text-red-400 mb-6 inline-block font-semibold transition">
             <i class="fa-solid fa-arrow-left text-sm mr-1"></i> Cancelar e Voltar
         </a>
 

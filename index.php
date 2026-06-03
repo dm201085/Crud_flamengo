@@ -9,7 +9,6 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    
     $sql_code = "SELECT id, nome, senha FROM usuarios WHERE email = ? LIMIT 1";
     
     if ($stmt = $mysqli->prepare($sql_code)) {
@@ -21,8 +20,7 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
         if ($result->num_rows == 1) {
             $usuario = $result->fetch_assoc();
 
-            
-            if (password_verify($senha, $usuario['senha'])) {
+            if ($senha === $usuario['senha']) {
                 
                 $_SESSION['id'] = $usuario['id'];
                 $_SESSION['nome'] = $usuario['nome'];
@@ -64,6 +62,7 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
         <div class="logo-area">
             <div class="escudo"></div>
 
+            <h1>
                 Clube de Regatas<br>do Flamengo
                 <span>Área Restrita</span>
             </h1>

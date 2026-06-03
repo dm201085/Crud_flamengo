@@ -1,6 +1,6 @@
 <?php
-include('protect.php');
-include('conexao.php');
+include('../../protect.php');
+include('../../conexao.php');
 
 $sql_code = "SELECT * FROM pagamentos ORDER BY id DESC";
 $sql_query = $mysqli->query($sql_code) or die("Falha na execução: " . $mysqli->error);
@@ -18,7 +18,7 @@ $sql_query = $mysqli->query($sql_code) or die("Falha na execução: " . $mysqli-
 <body class="bg-zinc-900 text-gray-100 font-sans min-h-screen p-6 md:p-10">
 
     <div class="max-w-5xl mx-auto">
-        <a href="painel.php" class="text-red-500 hover:text-red-400 mb-6 inline-block font-semibold transition">
+        <a href="../../painel.php" class="text-red-500 hover:text-red-400 mb-6 inline-block font-semibold transition">
             <i class="fa-solid fa-arrow-left text-sm mr-1"></i> Voltar ao Painel
         </a>
         
@@ -26,7 +26,7 @@ $sql_query = $mysqli->query($sql_code) or die("Falha na execução: " . $mysqli-
             <h1 class="text-2xl md:text-3xl font-bold tracking-tight">
                 Histórico de <span class="text-red-600">Pagamentos</span>
             </h1>
-            <a href="pagamentos_cadastrar.php" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition shadow-md shadow-red-600/10">
+            <a href="create.php" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition shadow-md shadow-red-600/10">
                 <i class="fa-solid fa-plus mr-1"></i> Lançar Pagamento
             </a>
         </div>
@@ -68,10 +68,10 @@ $sql_query = $mysqli->query($sql_code) or die("Falha na execução: " . $mysqli-
                                 </td>
                                 <td class="p-4 text-sm text-gray-400"><?php echo date('d/m/Y', strtotime($pagamento['data_pagamento'])); ?></td>
                                 <td class="p-4 text-sm text-center space-x-3">
-                                    <a href="pagamentos_editar.php?id=<?php echo $pagamento['id']; ?>" class="text-amber-500 hover:text-amber-400 transition" title="Editar">
+                                    <a href="edit.php?id=<?php echo $pagamento['id']; ?>" class="text-amber-500 hover:text-amber-400 transition" title="Editar">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
-                                    <a href="pagamentos_deletar.php?id=<?php echo $pagamento['id']; ?>" class="text-red-500 hover:text-red-400 transition" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir este pagamento?');">
+                                    <a href="delete.php?id=<?php echo $pagamento['id']; ?>" class="text-red-500 hover:text-red-400 transition" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir este pagamento?');">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
                                 </td>

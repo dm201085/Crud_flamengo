@@ -11,6 +11,6 @@ if (isset($_GET['id'])) {
     $mysqli->query($sql_code) or die("Falha ao deletar: " . $mysqli->error);
 }
 
-header("Location: ingressos.php");
+header("Location: index.php");
 exit();
 ?>

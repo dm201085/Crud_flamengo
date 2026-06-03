@@ -1,6 +1,6 @@
 <?php
-include('protect.php');
-include('conexao.php');
+include('../../protect.php');
+include('../../conexao.php');
 
 if (isset($_GET['id'])) {
     
@@ -11,6 +11,6 @@ if (isset($_GET['id'])) {
     $mysqli->query($sql_code) or die("Falha ao deletar: " . $mysqli->error);
 }
 
-header("Location: pagamentos.php");
+header("Location: index.php");
 exit();
 ?>

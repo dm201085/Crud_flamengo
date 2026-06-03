@@ -18,7 +18,7 @@ $sql_query = $mysqli->query($sql_code) or die("Falha na execução: " . $mysqli-
 <body class="bg-zinc-900 text-gray-100 font-sans min-h-screen p-6 md:p-10">
 
     <div class="max-w-5xl mx-auto">
-        <a href="painel.php" class="text-red-500 hover:text-red-400 mb-6 inline-block font-semibold transition">
+        <a href="../../painel.php" class="text-red-500 hover:text-red-400 mb-6 inline-block font-semibold transition">
             <i class="fa-solid fa-arrow-left text-sm mr-1"></i> Voltar ao Painel
         </a>
         
@@ -26,7 +26,7 @@ $sql_query = $mysqli->query($sql_code) or die("Falha na execução: " . $mysqli-
             <h1 class="text-2xl md:text-3xl font-bold tracking-tight">
                 Gerenciar <span class="text-red-600">Ingressos</span>
             </h1>
-            <a href="ingressos_cadastrar.php" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition shadow-md shadow-red-600/10">
+            <a href="create.php" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition shadow-md shadow-red-600/10">
                 <i class="fa-solid fa-plus mr-1"></i> Novo Ingresso
             </a>
         </div>
@@ -59,10 +59,10 @@ $sql_query = $mysqli->query($sql_code) or die("Falha na execução: " . $mysqli-
                                 <td class="p-4 text-sm text-green-500 font-medium">R$ <?php echo number_format($ingresso['preco'], 2, ',', '.'); ?></td>
                                 <td class="p-4 text-sm text-gray-300"><?php echo $ingresso['quantidade']; ?></td>
                                 <td class="p-4 text-sm text-center space-x-3">
-                                    <a href="ingressos_editar.php?id=<?php echo $ingresso['id']; ?>" class="text-amber-500 hover:text-amber-400 transition" title="Editar">
+                                    <a href="edit.php?id=<?php echo $ingresso['id']; ?>" class="text-amber-500 hover:text-amber-400 transition" title="Editar">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
-                                    <a href="ingressos_deletar.php?id=<?php echo $ingresso['id']; ?>" class="text-red-500 hover:text-red-400 transition" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir os ingressos de <?php echo htmlspecialchars($ingresso['partida']); ?>?');">
+                                    <a href="delete.php?id=<?php echo $ingresso['id']; ?>" class="text-red-500 hover:text-red-400 transition" title="Excluir" onclick="return confirm('Tem certeza que deseja excluir os ingressos de <?php echo htmlspecialchars($ingresso['partida']); ?>?');">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
                                 </td>

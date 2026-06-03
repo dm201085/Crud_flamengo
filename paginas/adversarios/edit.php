@@ -13,7 +13,7 @@ $query_buscar = $mysqli->query($sql_buscar) or die($mysqli->error);
 $adversario = $query_buscar->fetch_assoc();
 
 if (!$adversario) {
-    header("Location: adversarios.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sql_code = "UPDATE adversarios SET nome = '$nome', estado = '$estado' WHERE id = '$id'";
         
         if ($mysqli->query($sql_code)) {
-            header("Location: adversarios.php");
+            header("Location: index.php");
             exit();
         } else {
             $mensagem = "Erro ao atualizar: " . $mysqli->error;
