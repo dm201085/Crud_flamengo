@@ -1,50 +1,35 @@
-php:
+version: '3.8'
+services:
+
+  # Sua aplicação PHP com Apache
+  app:
     build: .
-    container_name: petshop_php
+    container_name: login_app
     ports:
       - "8080:80"
     volumes:
-      - ./:/var/www/html
+      - .:/var/www/html
     depends_on:
-      db:
-        condition: service_healthy
-    networks:
-      - rede_login
+      - db
 
-db:
+  # Seu banco de dados MySQL
+  db:
     image: mysql:8.0
-    container_name: petshop_db
+    container_name: login_db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: petshop1
+      MYSQL_DATABASE: login
     ports:
-      - "3307:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - rede_login
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
+      - "3306:3306"
 
-phpmyadmin:
+  # O gerenciador do Banco (PHPMyAdmin)
+  phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: login_phpmyadmin
+    links:
+      - db
     ports:
       - "8081:80"
     environment:
       PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: root
-    depends_on:
-      - db
-    networks:
-      - rede_login
-
-networks:
-  rede_login:
-
-volumes:
-  mysql_data:
