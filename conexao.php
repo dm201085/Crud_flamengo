@@ -1,16 +1,19 @@
 <?php
 
-$usuario= "root";
-$senha= "";
-$database = "ingresso";
 $host = "localhost";
+$usuario = "root";
+$senha = "";
+$database = "ingresso";
 
+try {
+    $mysqli = new mysqli($host, $usuario, $senha, $database);
 
-$mysqli = new mysqli($host, $usuario, $senha, $database);
+    if ($mysqli->connect_errno) {
+        die("Erro ao conectar ao banco: " . $mysqli->connect_error);
+    }
 
-if ($mysqli->connect_error) {
-    die("Falha ao conectar ao banco de dados: " . $mysqli->connect_error);
+    $mysqli->set_charset("utf8mb4");
+
+} catch (Exception $e) {
+    die("Erro: " . $e->getMessage());
 }
-
-
-$mysqli->set_charset("utf8mb4");
