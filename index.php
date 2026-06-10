@@ -9,17 +9,24 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
+    // Define a consulta usando '?' (Prepared Statement) como medida de segurança contra SQL Injection
     $sql_code = "SELECT id, nome, senha FROM usuarios WHERE email = ? LIMIT 1";
     
+    // Prepara a consulta no banco de dados antes de inserir os valores
     if ($stmt = $mysqli->prepare($sql_code)) {
         
+        // Substitui o '?' pelo e-mail do usuário, informando que é uma string ("s")
         $stmt->bind_param("s", $email);
         $stmt->execute();
+        
+        // Captura o resultado gerado pela execução da consulta
         $result = $stmt->get_result();
 
         if ($result->num_rows == 1) {
+            // Extrai a linha retornada pelo banco e a transforma em um array associativo (ex: $usuario['nome'])
             $usuario = $result->fetch_assoc();
 
+            // Compara a senha digitada com a salva no banco. (Nota: Em produção, prefira password_hash() e password_verify())
             if ($senha === $usuario['senha']) {
                 
                 $_SESSION['id'] = $usuario['id'];
@@ -48,7 +55,6 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clube de Regatas do Flamengo — Login</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="login.css">
 </head>
@@ -78,31 +84,15 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
 
             <div class="campo">
                 <label for="email">E-mail</label>
-                <input 
-                    type="email" 
-                    id="email"
-                    name="email"
-                    placeholder="seu@email.com"
-                    autocomplete="email"
-                    required
-                >
+                <input type="email" id="email" name="email" placeholder="seu@email.com" autocomplete="email" required>
             </div>
 
             <div class="campo">
                 <label for="senha">Senha</label>
-                <input 
-                    type="password"
-                    id="senha"
-                    name="senha"
-                    placeholder="••••••••"
-                    autocomplete="current-password"
-                    required
-                >
+                <input type="password" id="senha" name="senha" placeholder="••••••••" autocomplete="current-password" required>
             </div>
 
-            <button type="submit" class="btn">
-                Entrar
-            </button>
+            <button type="submit" class="btn">Entrar</button>
 
         </form>
 
