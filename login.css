@@ -23,24 +23,30 @@ body {
     position: relative;
 }
 
-/* Fundo com foto do estádio via gradiente + overlay */
 .bg {
     position: fixed;
-    inset: 0;
+    /* 'inset: 0' é uma forma abreviada para top:0, right:0, bottom:0, left:0, preenchendo a tela toda */
+    inset: 0; 
+    
+    /* Mistura duas camadas de fundo: um degradê semi-transparente sobreposto à foto do Maracanã */
     background-image:
         linear-gradient(160deg, rgba(10,10,10,0.82) 0%, rgba(140,0,0,0.65) 50%, rgba(10,10,10,0.92) 100%),
         url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/forty/Maracan%C3%A3_-_Flamengo_x_Inter_Milan_2022_%2801%29.jpg/1280px-Maracan%C3%A3_-_Flamengo_x_Inter_Milan_2022_%2801%29.jpg');
+    
     background-size: cover;
     background-position: center;
+    
+    /* Aumenta a intensidade das cores da foto ao fundo em 10% */
     filter: saturate(1.1);
     z-index: 0;
 }
 
-/* Padrão geométrico sutil sobre o fundo */
 .bg::after {
     content: '';
     position: absolute;
     inset: 0;
+    
+    /* Cria as linhas diagonais finas (textura) repetindo um degradê que alterna entre cor sólida e transparente */
     background-image: repeating-linear-gradient(
         45deg,
         rgba(204,0,0,0.04) 0px,
@@ -59,25 +65,33 @@ body {
     background: rgba(10, 10, 10, 0.82);
     border: 1px solid rgba(204, 0, 0, 0.35);
     border-radius: 4px;
+    
+    /* Cria o efeito visual de 'vidro fosco', desfocando o fundo da página (a foto) que passa por trás do card */
     backdrop-filter: blur(18px);
+    
+    /* Usa 3 sombras combinadas: 1ª uma borda interna branca finíssima, 2ª sombra escura abaixo para flutuação e 3ª um brilho vermelho ao redor do card */
     box-shadow:
         0 0 0 1px rgba(255,255,255,0.04) inset,
         0 32px 80px rgba(0,0,0,0.7),
         0 0 60px rgba(180,0,0,0.15);
+        
+    /* Aplica a animação 'fadeUp' definida abaixo. A curva 'cubic-bezier' dá o movimento suave de desaceleração */
     animation: fadeUp 0.7s cubic-bezier(.22,1,.36,1) both;
 }
 
 @keyframes fadeUp {
+    /* Faz o card iniciar transparente e 28px mais para baixo, indo para opaco e na posição original (eixo Y = 0) */
     from { opacity: 0; transform: translateY(28px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Linha decorativa vermelha no topo do card */
 .card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
+    
+    /* Desenha a listra horizontal no topo alternando vermelho, ouro no meio e vermelho novamente */
     background: linear-gradient(90deg, var(--vermelho2), var(--ouro), var(--vermelho2));
     border-radius: 4px 4px 0 0;
 }
@@ -91,6 +105,8 @@ body {
     width: 72px;
     height: 72px;
     margin: 0 auto 16px;
+    
+    /* Simula a divisão meio a meio do escudo, cortando na diagonal (135 graus) entre o vermelho e o preto */
     background: linear-gradient(135deg, var(--vermelho) 50%, var(--preto) 50%);
     border-radius: 50%;
     border: 2px solid var(--ouro);
@@ -99,10 +115,13 @@ body {
     justify-content: center;
     font-size: 30px;
     box-shadow: 0 0 24px rgba(204,0,0,0.4);
+    
+    /* Adiciona um efeito infinito onde o escudo 'pulsa' através da sombra baseada na animação definida abaixo */
     animation: pulse 3s ease-in-out infinite;
 }
 
 @keyframes pulse {
+    /* Controla o aumento e a diminuição do tamanho/intensidade do brilho vermelho atrás do escudo */
     0%, 100% { box-shadow: 0 0 24px rgba(204,0,0,0.4); }
     50%       { box-shadow: 0 0 40px rgba(204,0,0,0.7); }
 }
@@ -157,6 +176,8 @@ input[type="email"]:focus,
 input[type="password"]:focus {
     border-color: var(--vermelho);
     background: rgba(204,0,0,0.07);
+    
+    /* Cria um anel de destaque (focus ring) vermelho mais espesso em volta do campo quando o usuário está digitando */
     box-shadow: 0 0 0 3px rgba(204,0,0,0.15);
 }
 
@@ -183,12 +204,14 @@ input[type="password"]:focus {
 }
 
 .btn:hover {
+    /* Quando passa o mouse, o botão fica 15% mais brilhante e move-se um pixel para cima para criar uma interação tátil */
     filter: brightness(1.15);
     transform: translateY(-1px);
     box-shadow: 0 8px 28px rgba(204,0,0,0.5);
 }
 
 .btn:active {
+    /* Quando o botão é clicado (estado active), ele volta à posição original dando a sensação física de 'aperto' */
     transform: translateY(0);
 }
 
