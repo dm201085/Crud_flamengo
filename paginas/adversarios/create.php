@@ -23,7 +23,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
+<?php
+include('../../protect.php');
+include('../../conexao.php');
 
+$mensagem = "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+    // Protege os dados recebidos contra caracteres que possam causar problemas na consulta SQL.
+    $partida = $mysqli->real_escape_string($_POST['partida']);
+    $setor = $mysqli->real_escape_string($_POST['setor']);
+
+    // Substitui vírgula por ponto para garantir o formato correto de valores decimais.
+    $preco = str_replace(',', '.', $_POST['preco']);
+
+    // Converte o valor informado para um número inteiro.
+    $quantidade = intval($_POST['quantidade']);
+
+    // Verifica se algum campo obrigatório ficou vazio.
+    if (empty($partida) || empty($setor) || empty($preco) || empty($quantidade)) {
+        $mensagem = "Por favor, preencha todos os campos.";
+    } else {
+
+        // Monta a instrução SQL que será enviada ao banco de dados.
+        $sql_code = "INSERT INTO ingressos (partida, setor, preco, quantidade) VALUES ('$partida', '$setor', '$preco', '$quantidade')";
+        
+        // Executa a consulta SQL e verifica se o cadastro foi realizado com sucesso.
+        if ($mysqli->query($sql_code)) {
+
+            // Redireciona o usuário para a página principal após o cadastro.
+            header("Location: index.php");
+            exit();
+
+        } else {
+
+            // Exibe a mensagem de erro retornada pelo banco de dados.
+            $mensagem = "Erro ao cadastrar: " . $mysqli->error;
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
